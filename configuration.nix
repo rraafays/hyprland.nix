@@ -75,7 +75,7 @@ in
           ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", Pause, exec, playerctl play-pause"
+          "CTRL, p, exec, playerctl play-pause"
 
           "CTRL, 1, workspace, 1"
           "CTRL, 2, workspace, 2"
