@@ -52,7 +52,7 @@ in
       xwayland.enable = true;
       systemd.enable = true;
       settings = {
-        monitor = ",highrr,auto,1,vrr,0";
+        monitor = ",highrr,auto,1,vrr,1";
         bind = [
           "CTRL ALT, DELETE, exec, shutdown now"
           "CTRL ALT, RETURN, exec, beep;beep;beep; reboot"
