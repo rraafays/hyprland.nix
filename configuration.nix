@@ -42,6 +42,10 @@ in
   home-manager.users.raf = {
     home.enableNixpkgsReleaseCheck = false;
     dconf.enable = true;
+    xdg.desktopEntries.Steam = {
+      name = "Steam (Big Picture)";
+      exec = "gamescope --adaptive-sync -r 175 -W 3440 -H 1440 -f -e -- steam steam://open/bigpicture";
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
