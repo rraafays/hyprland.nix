@@ -42,10 +42,6 @@ in
   home-manager.users.raf = {
     home.enableNixpkgsReleaseCheck = false;
     dconf.enable = true;
-    xdg.desktopEntries.Steam = {
-      name = "Steam (Big Picture)";
-      exec = "gamescope --adaptive-sync -r 175 -W 3440 -H 1440 -f -- steam steam://open/bigpicture";
-    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
@@ -181,6 +177,8 @@ in
           "BROWSER,firefox"
           "MOZ_ENABLE_WAYLAND,1"
         ];
+
+        windowrulev2 = [ "fullscreen, title:^()$,class:^(steam)$" ];
       };
     };
   };
