@@ -22,7 +22,7 @@ in
   };
 
   fonts.packages = with pkgs; [
-    (iosevka-bin.override { variant = "sgr-iosevka-term-curly"; })
+    (iosevka-bin.override { variant = "SGr-IosevkaTermCurly"; })
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     sarasa-gothic
     sarabun-font
