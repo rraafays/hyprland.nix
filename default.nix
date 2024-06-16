@@ -73,9 +73,6 @@ in
           "CTRL ALT, left,  resizeactive, -10 0"
 
           "CTRL, p, exec, playerctl play-pause"
-          ",XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
-          ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
           "CTRL, 1, workspace, 1"
           "CTRL, 2, workspace, 2"
