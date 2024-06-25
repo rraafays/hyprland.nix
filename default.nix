@@ -63,7 +63,7 @@ in
 
           "CTRL, q, killactive"
           "CTRL, RETURN, exec, kitty"
-          "CTRL, SPACE, exec, tofi-drun \"\""
+          "CTRL, SPACE, exec, tofi-drun"
 
           "CTRL, up,    movefocus, u"
           "CTRL, right, movefocus, r"
