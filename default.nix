@@ -2,6 +2,13 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+  old = import
+    (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/1732ee9120e43c1df33a33004315741d0173d0b2.tar.gz";
+    })
+    { };
+
+  bluez5_66 = old.bluez5-experimental;
 in
 {
   imports = [ "${home-manager}/nixos" ];
@@ -11,6 +18,7 @@ in
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    package = bluez5_66;
   };
   security.rtkit.enable = true;
   services.pipewire = {
@@ -48,7 +56,7 @@ in
       xwayland.enable = true;
       systemd.enable = true;
       settings = {
-        monitor = ",highrr,auto,1,vrr,1";
+        monitor = ",3440x1440@175,auto,1,vrr,1";
         bind = [
           "CTRL ALT, DELETE, exec, shutdown now"
           "CTRL ALT, RETURN, exec, killall .Hyprland-wrapp" # hdr gamemode
@@ -125,8 +133,6 @@ in
           "col.inactive_border" = "0xFF928373";
           layout = "dwindle";
           allow_tearing = false;
-          cursor_inactive_timeout = 1;
-          no_cursor_warps = 0;
         };
 
         decoration = {
