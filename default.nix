@@ -63,7 +63,7 @@ in
 
           "CTRL, q, killactive"
           "CTRL, RETURN, exec, kitty"
-          "CTRL, SPACE, exec, tofi-drun"
+          "CTRL, SPACE, exec, tofi-drun --drun-launch=true"
 
           "CTRL, up,    movefocus, u"
           "CTRL, right, movefocus, r"
@@ -182,6 +182,11 @@ in
         ];
 
         windowrulev2 = [ "fullscreen, title:^()$,class:^(steam)$" ];
+
+        cursor = {
+          hide_on_key_press = true;
+          inactive_timeout = 1;
+        };
       };
     };
   };
