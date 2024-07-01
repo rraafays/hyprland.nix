@@ -2,40 +2,9 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-  old = import
-    (builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/1732ee9120e43c1df33a33004315741d0173d0b2.tar.gz";
-    })
-    { };
-
-  bluez5_66 = old.bluez5-experimental;
 in
 {
   imports = [ "${home-manager}/nixos" ];
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    package = bluez5_66;
-  };
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
-
-  fonts.packages = with pkgs; [
-    (iosevka-bin.override { variant = "SGr-IosevkaTermCurly"; })
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    sarasa-gothic
-    sarabun-font
-    noto-fonts-emoji
-  ];
 
   security.polkit.enable = true;
   xdg.portal = {
