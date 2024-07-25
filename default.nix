@@ -140,17 +140,20 @@ in
           "XCURSOR_SIZE,24"
           "GDK_SCALE,1"
           "WLR_NO_HARDWARE_CURSORS,1"
-          "GDK_BACKEND,wayland,x11"
           "QT_QPA_PLATFORM,wayland;xcb"
-          "CLUTTER_BACKEND,wayland"
           "XDG_CURRENT_DESKTOP,Hyprland"
           "XDG_SESSION_TYPE,wayland"
           "XDG_SESSION_DESKTOP,Hyprland"
+          "SDL_VIDEODRIVER,wayland,x11"
           "BROWSER,firefox"
           "MOZ_ENABLE_WAYLAND,1"
         ];
 
         windowrulev2 = [ "fullscreen, title:^()$,class:^(steam)$" ];
+
+        xwayland = {
+          force_zero_scaling = true;
+        };
 
         cursor = {
           hide_on_key_press = true;
