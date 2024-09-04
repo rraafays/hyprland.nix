@@ -29,7 +29,10 @@ in
       xwayland.enable = true;
       systemd.enable = true;
       settings = {
-        monitor = ",3440x1440@175,auto,1,vrr,1";
+        monitor = [ 
+            "eDP-1,2256x1504@60,0x0,1" 
+            ",preferred,auto,1,vrr,1"
+        ];
         bind = [
           "CTRL ALT, DELETE, exec, shutdown now"
           "CTRL ALT, RETURN, exec, killall .Hyprland-wrapp" # hdr gamemode
