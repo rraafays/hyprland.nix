@@ -15,8 +15,8 @@
     enable = true;
     xwayland.enable = true;
   };
+
   home-manager.users.raf = {
-    home.enableNixpkgsReleaseCheck = false;
     dconf.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
@@ -29,14 +29,14 @@
             ",preferred,auto,1,vrr,1"
         ];
         bind = [
-",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-",XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
-",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-",XF86AudioPrev, exec, playerctl previous"
-",XF86AudioPlay, exec, playerctl play-pause"
-",XF86AudioNext, exec, playerctl next"
-",XF86MonBrightnessDown, exec, brightnessctl set 10-"
-",XF86MonBrightnessUp, exec, brightnessctl set 10+"
+          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ",XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
+          ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+          ",XF86AudioPrev, exec, playerctl previous"
+          ",XF86AudioPlay, exec, playerctl play-pause"
+          ",XF86AudioNext, exec, playerctl next"
+          ",XF86MonBrightnessDown, exec, brightnessctl set 10-"
+          ",XF86MonBrightnessUp, exec, brightnessctl set 10+"
 
           "CTRL ALT, DELETE, exec, shutdown now"
           "CTRL ALT, RETURN, exec, killall .Hyprland-wrapp" # hdr gamemode
