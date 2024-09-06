@@ -152,6 +152,7 @@ input-field = {
         exec-once = [
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "clipse -listen"
+          "hyprlock || hyprctl dispatch exit"
         ];
 
         input = {
