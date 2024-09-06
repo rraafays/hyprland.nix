@@ -19,6 +19,8 @@ in
     };
 
   security.polkit.enable = true;
+  security.pam.services.hyprlock = {};
+
   xdg.portal = {
     enable = true;
     config.common.default = "*";
@@ -34,6 +36,32 @@ in
   };
 
   home-manager.users.${USER} = {
+      programs.hyprlock = {
+          enable = true;
+          settings = {
+              background = {
+                  color = "rgb(0,0,0)";
+              };
+input-field = {
+    size = "250, 60";
+    outline_thickness = 2;
+    dots_size = 0.2;
+    dots_spacing = 0.35;
+    dots_center = true;
+    outer_color = "rgba(0, 0, 0, 0)";
+    inner_color = "rgba(0, 0, 0, 0)";
+    font_color = "rgb(0,0,0)";
+    fade_on_empty = false;
+    rounding = -1;
+    check_color = "rgba(0,0,0)";
+    placeholder_text = ''<b><span foreground="##ebdbb2">Input Password...</span></b>'';
+    hide_input = false;
+    position = "0, -200";
+    halign = "center";
+    valign = "center";
+};
+          };
+      };
     home.packages = with pkgs; [
         nur.repos.wolfangaukang.mouseless
         kitty
@@ -41,6 +69,8 @@ in
         slurp
         tofi
         playerctl
+        clipse
+        wl-clipboard
     ];
     dconf.enable = true;
     wayland.windowManager.hyprland = {
@@ -65,6 +95,7 @@ in
 
           "CTRL ALT, DELETE, exec, shutdown now"
           "CTRL ALT, RETURN, exec, reboot"
+          "CTRL, l, exec, hyprlock"
 
           "CTRL, q, killactive"
           "CTRL, RETURN, exec, kitty"
@@ -120,6 +151,7 @@ in
 
         exec-once = [
           "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+          "clipse -listen"
         ];
 
         input = {
