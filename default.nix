@@ -17,6 +17,14 @@
   };
 
   home-manager.users.raf = {
+    home.packages = with pkgs; [
+        nur.repos.wolfangaukang.mouseless
+        kitty
+        grim 
+        slurp
+        tofi
+        playerctl
+    ];
     dconf.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
@@ -39,7 +47,7 @@
           ",XF86MonBrightnessUp, exec, brightnessctl set 10+"
 
           "CTRL ALT, DELETE, exec, shutdown now"
-          "CTRL ALT, RETURN, exec, killall .Hyprland-wrapp" # hdr gamemode
+          "CTRL ALT, RETURN, exec, reboot"
 
           "CTRL, q, killactive"
           "CTRL, RETURN, exec, kitty"
