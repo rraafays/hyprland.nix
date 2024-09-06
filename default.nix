@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+    USER = "raf";
+in
 {
   security.polkit.enable = true;
   xdg.portal = {
@@ -16,7 +19,7 @@
     xwayland.enable = true;
   };
 
-  home-manager.users.raf = {
+  home-manager.users.${USER} = {
     home.packages = with pkgs; [
         nur.repos.wolfangaukang.mouseless
         kitty
