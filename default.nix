@@ -42,23 +42,55 @@ in
               background = {
                   color = "rgb(0,0,0)";
               };
+              label = [
+                {
+                    text = "HH";
+                    color = "rgb(235,219,178)";
+                    font_family = "Iosevka Term Curly";
+                    font_size = 112;
+                    position = "0, 200";
+                    halign = "center";
+                    valign = "center";
+                }
+                {
+                    text = "MM";
+                    color = "rgb(235,219,178)";
+                    font_family = "Iosevka Term Curly";
+                    font_size = 112;
+                    position = "0, 80";
+                    halign = "center";
+                    valign = "center";
+                }
+                {
+                    text = "DAY";
+                    color = "rgb(235,219,178)";
+                    font_family = "Iosevka Term Curly";
+                    font_size = 22;
+                    position = "0, 30";
+                    halign = "center";
+                    valign = "center";
+                }
+              ];
 input-field = {
-    size = "250, 60";
-    outline_thickness = 2;
-    dots_size = 0.2;
-    dots_spacing = 0.35;
+    size = "250, 50";
+    outline_thickness = 3;
+    dots_size = 0.26;
+    dots_spacing = 0.64;
     dots_center = true;
-    outer_color = "rgba(0, 0, 0, 0)";
-    inner_color = "rgba(0, 0, 0, 0)";
-    font_color = "rgb(0,0,0)";
+    dots_rounding = -1;
+    outer_color = "rgb(0,0,0)";
+    inner_color = "rgb(0,0,0)";
+    font_color = "rgb(235,219,178)";
     fade_on_empty = false;
-    rounding = -1;
-    check_color = "rgba(0,0,0)";
+    rounding = 22;
     placeholder_text = ''<b><span foreground="##ebdbb2">Input Password...</span></b>'';
     hide_input = false;
     position = "0, -200";
     halign = "center";
     valign = "center";
+    check_color = "rgb(254,128,25)";
+    fail_color = "rgb(251,72,51)";
+    fail_text = "<i>Sorry, try again.</i>";
 };
           };
       };
