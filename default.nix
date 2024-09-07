@@ -72,7 +72,7 @@ in
                 }
               ];
 input-field = {
-    size = "250, 50";
+    size = "300, 56";
     outline_thickness = 3;
     dots_size = 0.26;
     dots_spacing = 0.64;
@@ -81,9 +81,10 @@ input-field = {
     outer_color = "rgb(0,0,0)";
     inner_color = "rgb(0,0,0)";
     font_color = "rgb(235,219,178)";
+    font_family = "Iosevka Term Curly";
     fade_on_empty = false;
     rounding = 22;
-    placeholder_text = ''<b><span foreground="##ebdbb2">Input Password...</span></b>'';
+    placeholder_text = ''<span foreground="##ebdbb2">Input Password...</span>'';
     hide_input = false;
     position = "0, -200";
     halign = "center";
