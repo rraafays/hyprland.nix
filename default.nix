@@ -44,7 +44,7 @@ in
               };
               label = [
                 {
-                    text = "HH";
+                    text = ''cmd[update:1000] echo "<b><big> $(date +"%H") </big></b>"'';
                     color = "rgb(235,219,178)";
                     font_family = "Iosevka Term Curly";
                     font_size = 112;
@@ -53,16 +53,16 @@ in
                     valign = "center";
                 }
                 {
-                    text = "MM";
+                    text = ''cmd[update:1000] echo "<b><big> $(date +"%M") </big></b>"'';
                     color = "rgb(235,219,178)";
                     font_family = "Iosevka Term Curly";
                     font_size = 112;
-                    position = "0, 80";
+                    position = "0, 76";
                     halign = "center";
                     valign = "center";
                 }
                 {
-                    text = "DAY";
+                    text = ''cmd[update:18000000] echo "<b><big> "$(date +'%A')" </big></b>"'';
                     color = "rgb(235,219,178)";
                     font_family = "Iosevka Term Curly";
                     font_size = 22;
