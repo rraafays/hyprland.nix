@@ -36,6 +36,17 @@ in
   };
 
   home-manager.users.${USER} = {
+    home.packages = with pkgs; [
+      nur.repos.wolfangaukang.mouseless
+      kitty
+      grim
+      slurp
+      tofi
+      playerctl
+      clipse
+      wl-clipboard
+    ];
+
     programs.hyprlock = {
       enable = true;
       settings = {
@@ -95,16 +106,7 @@ in
         };
       };
     };
-    home.packages = with pkgs; [
-      nur.repos.wolfangaukang.mouseless
-      kitty
-      grim
-      slurp
-      tofi
-      playerctl
-      clipse
-      wl-clipboard
-    ];
+
     dconf.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
