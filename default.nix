@@ -2,6 +2,26 @@
 
 let
   USER = "raf";
+
+  undocked = {
+    device = "eDP-1";
+    resolution = "2256x1504@60";
+    position = "0x0";
+    scale = "1";
+  };
+  docked = {
+    device = "desc:Samsung Electric Company Odyssey G85SB H1AK500000";
+    resolution = "3440x1440@120";
+    position = "auto";
+    scale = "1";
+    vrr_mode = "vrr,1";
+  };
+  default = {
+    device = "";
+    resolution = "preffered";
+    position = "auto";
+    scale = "1";
+  };
 in
 {
   services.greetd = {
@@ -115,8 +135,9 @@ in
       systemd.enable = true;
       settings = {
         monitor = [
-          "eDP-1,2256x1504@60,0x0,1"
-          ",preferred,auto,1,vrr,1"
+          "${undocked.device},${undocked.resolution},${undocked.position},${undocked.scale}"
+          "${docked.device},${docked.resolution},${docked.position},${docked.scale},${docked.vrr_mode}"
+          "${default.device},${default.resolution},${default.position},${default.scale}"
         ];
         bind = [
           ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -180,8 +201,8 @@ in
 
         bindl = [
           ", switch:Lid Switch, exec, hyprlock"
-          ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
-          ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, 2256x1504@60, 0x0, 1'"
+          ", switch:on:Lid Switch, exec, hyprctl keyword monitor '${undocked.device},disable'"
+          ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${undocked.device},${undocked.resolution},${undocked.position},${undocked.scale}'"
         ];
 
         exec = [
