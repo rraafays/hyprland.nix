@@ -3,24 +3,27 @@
 let
   USER = "raf";
 
-  undocked = {
+  internal = {
     device = "eDP-1";
     resolution = "2256x1504@60";
     position = "0x0";
     scale = "1";
+    config = "${internal.device},${internal.resolution},${internal.position},${internal.scale}";
   };
-  docked = {
+  external = {
     device = "desc:Samsung Electric Company Odyssey G85SB H1AK500000";
     resolution = "3440x1440@120";
     position = "auto";
     scale = "1";
     vrr_mode = "vrr,1";
+    config = "${external.device},${external.resolution},${external.position},${external.scale},${external.vrr_mode}";
   };
   default = {
     device = "";
     resolution = "preffered";
     position = "auto";
     scale = "1";
+    config = "${default.device},${default.resolution},${default.position},${default.scale}";
   };
 in
 {
@@ -135,9 +138,9 @@ in
       systemd.enable = true;
       settings = {
         monitor = [
-          "${undocked.device},${undocked.resolution},${undocked.position},${undocked.scale}"
-          "${docked.device},${docked.resolution},${docked.position},${docked.scale},${docked.vrr_mode}"
-          "${default.device},${default.resolution},${default.position},${default.scale}"
+          "${internal.config}"
+          "${external.config}"
+          "${default.config}"
         ];
         bind = [
           ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -201,8 +204,8 @@ in
 
         bindl = [
           ", switch:Lid Switch, exec, hyprlock"
-          ", switch:on:Lid Switch, exec, hyprctl keyword monitor '${undocked.device},disable'"
-          ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${undocked.device},${undocked.resolution},${undocked.position},${undocked.scale}'"
+          ", switch:on:Lid Switch, exec, hyprctl keyword monitor '${internal.device},disable'"
+          ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${internal.config}'"
         ];
 
         exec = [
