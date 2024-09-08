@@ -178,6 +178,12 @@ in
           "SHIFT, mouse:273, resizewindow"
         ];
 
+        bindl = [
+          ", switch:Lid Switch, exec, hyprlock"
+          ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
+          ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, 2256x1504@60, 0x0, 1'"
+        ];
+
         exec = [
           "pactl set-sink-volume @DEFAULT_SINK@ 100%"
           "wpctl set-volume @DEFAULT_SINK@ 100%"
