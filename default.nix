@@ -27,124 +27,12 @@ let
   };
 in
 {
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${USER}";
-      };
-      default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${USER}";
-      };
-    };
-  };
-
-  security.polkit.enable = true;
-  security.pam.services.hyprlock = { };
-
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
   home-manager.users.${USER} = {
-    systemd.user.services.mouseless = {
-      Unit = {
-        Description = "mouseless";
-      };
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
-      Service = {
-        ExecStart = "${pkgs.writeShellScript "mouseless" ''
-          #!/run/current-system/sw/bin/bash
-          ${pkgs.nur.repos.wolfangaukang.mouseless}/bin/mouseless --config ~/.config/mouseless/config.yaml
-        ''}";
-      };
-    };
-
-    home.packages = with pkgs; [
-      nur.repos.wolfangaukang.mouseless
-      kitty
-      grim
-      slurp
-      tofi
-      playerctl
-      clipse
-      wl-clipboard
-    ];
-
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        background = {
-          color = "rgb(0,0,0)";
-        };
-        label = [
-          {
-            text = ''cmd[update:1000] echo "<b><big> $(date +"%H") </big></b>"'';
-            color = "rgb(235,219,178)";
-            font_family = "Iosevka Term Curly";
-            font_size = 112;
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-          {
-            text = ''cmd[update:1000] echo "<b><big> $(date +"%M") </big></b>"'';
-            color = "rgb(235,219,178)";
-            font_family = "Iosevka Term Curly";
-            font_size = 112;
-            position = "0, 76";
-            halign = "center";
-            valign = "center";
-          }
-          {
-            text = ''cmd[update:18000000] echo "<b><big> "$(date +'%A')" </big></b>"'';
-            color = "rgb(235,219,178)";
-            font_family = "Iosevka Term Curly";
-            font_size = 22;
-            position = "0, 30";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-        input-field = {
-          size = "300, 56";
-          outline_thickness = 3;
-          dots_size = 0.26;
-          dots_spacing = 0.64;
-          dots_center = true;
-          dots_rounding = -1;
-          outer_color = "rgb(0,0,0)";
-          inner_color = "rgb(0,0,0)";
-          font_color = "rgb(235,219,178)";
-          font_family = "Iosevka Term Curly";
-          fade_on_empty = false;
-          rounding = 22;
-          placeholder_text = ''<span foreground="##ebdbb2">Input Password...</span>'';
-          hide_input = false;
-          position = "0, -200";
-          halign = "center";
-          valign = "center";
-          check_color = "rgb(254,128,25)";
-          fail_color = "rgb(251,72,51)";
-          fail_text = "<i>Sorry, try again.</i>";
-        };
-      };
-    };
-
     dconf.enable = true;
     wayland.windowManager.hyprland = {
       enable = true;
@@ -311,5 +199,119 @@ in
         };
       };
     };
+
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        background = {
+          color = "rgb(0,0,0)";
+        };
+        label = [
+          {
+            text = ''cmd[update:1000] echo "<b><big> $(date +"%H") </big></b>"'';
+            color = "rgb(235,219,178)";
+            font_family = "Iosevka Term Curly";
+            font_size = 112;
+            position = "0, 200";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            text = ''cmd[update:1000] echo "<b><big> $(date +"%M") </big></b>"'';
+            color = "rgb(235,219,178)";
+            font_family = "Iosevka Term Curly";
+            font_size = 112;
+            position = "0, 76";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            text = ''cmd[update:18000000] echo "<b><big> "$(date +'%A')" </big></b>"'';
+            color = "rgb(235,219,178)";
+            font_family = "Iosevka Term Curly";
+            font_size = 22;
+            position = "0, 30";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+        input-field = {
+          size = "300, 56";
+          outline_thickness = 3;
+          dots_size = 0.26;
+          dots_spacing = 0.64;
+          dots_center = true;
+          dots_rounding = -1;
+          outer_color = "rgb(0,0,0)";
+          inner_color = "rgb(0,0,0)";
+          font_color = "rgb(235,219,178)";
+          font_family = "Iosevka Term Curly";
+          fade_on_empty = false;
+          rounding = 22;
+          placeholder_text = ''<span foreground="##ebdbb2">Input Password...</span>'';
+          hide_input = false;
+          position = "0, -200";
+          halign = "center";
+          valign = "center";
+          check_color = "rgb(254,128,25)";
+          fail_color = "rgb(251,72,51)";
+          fail_text = "<i>Sorry, try again.</i>";
+        };
+      };
+    };
+
+    systemd.user.services.mouseless = {
+      Unit = {
+        Description = "mouseless";
+      };
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgs.writeShellScript "mouseless" ''
+          #!/run/current-system/sw/bin/bash
+          ${pkgs.nur.repos.wolfangaukang.mouseless}/bin/mouseless --config ~/.config/mouseless/config.yaml
+        ''}";
+      };
+    };
+
+    home.packages = with pkgs; [
+      nur.repos.wolfangaukang.mouseless
+      kitty
+      grim
+      slurp
+      tofi
+      playerctl
+      clipse
+      wl-clipboard
+    ];
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "${USER}";
+      };
+      default_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "${USER}";
+      };
+    };
+  };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
+
+  security = {
+    polkit.enable = true;
+    pam.services.hyprlock = { };
   };
 }
