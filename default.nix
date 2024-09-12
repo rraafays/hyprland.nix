@@ -32,6 +32,16 @@ in
     xwayland.enable = true;
   };
 
+  systemd.tmpfiles.settings = {
+    "10-rescan" = {
+      "/sys/bus/pci/rescan" = {
+        z = {
+          mode = "0777";
+        };
+      };
+    };
+  };
+
   home-manager.users.${USER} = {
     dconf.enable = true;
     wayland.windowManager.hyprland = {
@@ -110,6 +120,7 @@ in
         bindl = [
           ", switch:Lid Switch, exec, hyprlock"
           ", switch:on:Lid Switch, exec, hyprctl keyword monitor '${internal.device},disable'"
+          ", switch:on:Lid Switch, exec, echo 1 | tee /sys/bus/pci/rescan"
           ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${internal.config}'"
         ];
 
