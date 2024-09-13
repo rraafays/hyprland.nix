@@ -32,16 +32,6 @@ in
     xwayland.enable = true;
   };
 
-  systemd.tmpfiles.settings = {
-    "10-rescan" = {
-      "/sys/bus/pci/rescan" = {
-        z = {
-          mode = "0777";
-        };
-      };
-    };
-  };
-
   home-manager.users.${USER} = {
     dconf.enable = true;
     wayland.windowManager.hyprland = {
