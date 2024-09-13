@@ -120,8 +120,9 @@ in
         bindl = [
           ", switch:Lid Switch, exec, hyprlock"
           ", switch:on:Lid Switch, exec, hyprctl keyword monitor '${internal.device},disable'"
-          ", switch:on:Lid Switch, exec, echo 1 | tee /sys/bus/pci/rescan"
+          ", switch:on:Lid Switch, exec, sudo ${pkgs.dock}/bin/dock"
           ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${internal.config}'"
+          ", switch:off:Lid Switch, exec, sudo ${pkgs.undock}/bin/undock"
         ];
 
         exec = [
@@ -198,7 +199,17 @@ in
           "MOZ_ENABLE_WAYLAND,1"
         ];
 
-        windowrulev2 = [ "fullscreen, title:^()$,class:^(steam)$" ];
+        windowrulev2 = [
+          "float,class:^(steam|Steam)$"
+          "center,1,class:^(steam|Steam)$"
+
+          "float,class:^(steam_app_[0-9]+|Steam)$"
+          "center,1,class:^(steam_app_[0-9]+|Steam)$"
+          "rounding,0,class:^(steam_app_[0-9]+|Steam"
+          "focusonactivate,on,class:^(steam_app_[0-9]+|Steam"
+          "noborder,on,class:^(steam_app_[0-9]+|Steam"
+          "immediate,on,class:^(steam_app_[0-9]+|Steam"
+        ];
 
         xwayland = {
           force_zero_scaling = true;
