@@ -190,15 +190,9 @@ in
         ];
 
         windowrulev2 = [
-          "float,class:^(steam|Steam)$"
-          "center,1,class:^(steam|Steam)$"
-
-          "float,class:^(steam_app_[0-9]+|Steam)$"
-          "center,1,class:^(steam_app_[0-9]+|Steam)$"
-          "rounding,0,class:^(steam_app_[0-9]+|Steam"
-          "focusonactivate,on,class:^(steam_app_[0-9]+|Steam"
-          "noborder,on,class:^(steam_app_[0-9]+|Steam"
-          "immediate,on,class:^(steam_app_[0-9]+|Steam"
+          "fullscreen,class:^steam_app\d+$"
+          "stayfocused, title:^()$,class:^(steam)$"
+          "minsize 1 1, title:^()$,class:^(steam)$"
         ];
 
         xwayland = {
