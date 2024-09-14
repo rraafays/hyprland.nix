@@ -184,18 +184,26 @@ in
           "XDG_CURRENT_DESKTOP,Hyprland"
           "XDG_SESSION_TYPE,wayland"
           "XDG_SESSION_DESKTOP,Hyprland"
-          "SDL_VIDEODRIVER,wayland,x11"
           "BROWSER,firefox"
           "MOZ_ENABLE_WAYLAND,1"
+
+          "GDL_BACKEND,wayland"
+          "SDL_VIDEODRIVER,wayland"
+          "ENABLE_VKBASALT,0"
+          "MESA_NO_ERROR,1"
+          "PROTON_USE_WINE3D,1"
+          "XWAYLAND_WM,1"
+          "PROTON_NO_ESYNC,1"
+          "PROTON_NO_FSYNC,1"
+          "WINEDLLOVERRIDES,dinput8=n,b"
+          "__GL_THREADED_OPTIMIZATIONS,1"
+          "MESA_GLTHREAD,TRUE"
         ];
 
         windowrulev2 = [
-          "rounding 0, class:^steam_app\d+$"
-          "suppressevent maximize,class:^steam_app\d+$"
-          "fullscreen,class:^steam_app\d+$"
-          "rounding 0, class:^(steam)$"
-          "suppressevent maximize,class:^(steam)$"
-          "fullscreen,class:^(steam)$"
+          "float,class:^steam_app\d+$"
+          "pseudotile,class:^steam_app\d+$"
+          "stayfocused,class:^steam_app\d+$"
         ];
 
         xwayland = {
@@ -287,6 +295,7 @@ in
     home.packages = with pkgs; [
       nur.repos.wolfangaukang.mouseless
       kitty
+      gamescope
       grim
       slurp
       tofi
