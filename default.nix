@@ -190,9 +190,12 @@ in
         ];
 
         windowrulev2 = [
+          "rounding 0, class:^steam_app\d+$"
+          "suppressevent maximize,class:^steam_app\d+$"
           "fullscreen,class:^steam_app\d+$"
-          "stayfocused, title:^()$,class:^(steam)$"
-          "minsize 1 1, title:^()$,class:^(steam)$"
+          "rounding 0, class:^(steam)$"
+          "suppressevent maximize,class:^(steam)$"
+          "fullscreen,class:^(steam)$"
         ];
 
         xwayland = {
