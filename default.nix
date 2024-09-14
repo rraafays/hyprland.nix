@@ -48,11 +48,11 @@ in
         binde = [
           ",XF86MonBrightnessDown, exec, brightnessctl set 10-"
           ",XF86MonBrightnessUp, exec, brightnessctl set 10+"
-          ",XF86AudioLowerVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%-"
-          ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+          ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
+          ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
         ];
         bind = [
-          ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ",XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
           ",XF86AudioPrev, exec, playerctl previous"
           ",XF86AudioPlay, exec, playerctl play-pause"
           ",XF86AudioNext, exec, playerctl next"
@@ -113,11 +113,6 @@ in
           ", switch:on:Lid Switch, exec, sudo ${pkgs.dock}/bin/dock"
           ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${internal.config}'"
           ", switch:off:Lid Switch, exec, sudo ${pkgs.undock}/bin/undock"
-        ];
-
-        exec = [
-          "pactl set-sink-volume @DEFAULT_SINK@ 100%"
-          "wpctl set-volume @DEFAULT_SINK@ 100%"
         ];
 
         exec-once = [
