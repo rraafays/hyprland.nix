@@ -3,13 +3,13 @@
 let
   USER = "raf";
 
-  cursor_size = 48;
+  cursor_size = 24;
 
   internal = {
     device = "eDP-1";
     resolution = "2256x1504@60";
     position = "0x0";
-    scale = "1";
+    scale = "1.567";
     config = "${internal.device},${internal.resolution},${internal.position},${internal.scale}";
   };
   external = {
