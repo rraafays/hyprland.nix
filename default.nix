@@ -3,8 +3,6 @@
 let
   USER = "raf";
 
-  cursor_size = 24;
-
   internal = {
     device = "eDP-1";
     resolution = "2256x1504@60";
@@ -29,27 +27,17 @@ let
   };
 in
 {
+  imports = [
+    ./hyprlock.nix
+    ./cursor.nix
+  ];
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
-  environment = {
-    variables = {
-      XCURSOR_SIZE = cursor_size;
-      GTK_CURSOR_SIZE = cursor_size;
-    };
-  };
-
   home-manager.users.${USER} = {
-    dconf = {
-      enable = true;
-      settings = {
-        "org/gnome/desktop/interface" = {
-          cursor-size = cursor_size;
-        };
-      };
-    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
@@ -231,66 +219,6 @@ in
       };
     };
 
-    programs.hyprlock = {
-      enable = true;
-      settings = {
-        background = {
-          color = "rgb(0,0,0)";
-        };
-        label = [
-          {
-            text = ''cmd[update:1000] echo "<b><big> $(date +"%H") </big></b>"'';
-            color = "rgb(235,219,178)";
-            font_family = "Iosevka Term Curly";
-            font_size = 112;
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-          {
-            text = ''cmd[update:1000] echo "<b><big> $(date +"%M") </big></b>"'';
-            color = "rgb(235,219,178)";
-            font_family = "Iosevka Term Curly";
-            font_size = 112;
-            position = "0, 76";
-            halign = "center";
-            valign = "center";
-          }
-          {
-            text = ''cmd[update:18000000] echo "<b><big> "$(date +'%A')" </big></b>"'';
-            color = "rgb(235,219,178)";
-            font_family = "Iosevka Term Curly";
-            font_size = 22;
-            position = "0, 30";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-        input-field = {
-          size = "300, 56";
-          outline_thickness = 3;
-          dots_size = 0.26;
-          dots_spacing = 0.64;
-          dots_center = true;
-          dots_rounding = -1;
-          outer_color = "rgb(0,0,0)";
-          inner_color = "rgb(0,0,0)";
-          font_color = "rgb(235,219,178)";
-          font_family = "Iosevka Term Curly";
-          fade_on_empty = false;
-          rounding = 22;
-          placeholder_text = ''<span foreground="##ebdbb2">Input Password...</span>'';
-          hide_input = false;
-          position = "0, -200";
-          halign = "center";
-          valign = "center";
-          check_color = "rgb(254,128,25)";
-          fail_color = "rgb(251,72,51)";
-          fail_text = "<i>Sorry, try again.</i>";
-        };
-      };
-    };
-
     systemd.user.services.mouseless = {
       Unit = {
         Description = "mouseless";
@@ -307,27 +235,6 @@ in
     };
 
     home = {
-      pointerCursor =
-        let
-          getFrom = url: hash: name: {
-            gtk.enable = true;
-            x11.enable = true;
-            name = name;
-            size = cursor_size;
-            package = pkgs.runCommand "moveUp" { } ''
-              mkdir -p $out/share/icons
-              ln -s ${
-                pkgs.fetchzip {
-                  url = url;
-                  hash = hash;
-                }
-              } $out/share/icons/${name}
-            '';
-          };
-        in
-        getFrom "https://github.com/ful1e5/fuchsia-cursor/releases/download/v2.0.0/Fuchsia-Pop.tar.gz"
-          "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
-          "Fuchsia-Pop";
       packages = with pkgs; [
         nur.repos.wolfangaukang.mouseless
         kitty
@@ -363,10 +270,5 @@ in
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
-  };
-
-  security = {
-    polkit.enable = true;
-    pam.services.hyprlock = { };
   };
 }
