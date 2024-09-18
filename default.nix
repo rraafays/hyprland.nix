@@ -3,6 +3,8 @@
 let
   USER = "raf";
 
+  cursor_size = 48;
+
   internal = {
     device = "eDP-1";
     resolution = "2256x1504@60";
@@ -32,11 +34,22 @@ in
     xwayland.enable = true;
   };
 
-  environment.variables.XCURSOR_SIZE = "96";
-  environment.variables.GTK_CURSOR_SIZE = "96";
+  environment = {
+    variables = {
+      XCURSOR_SIZE = cursor_size;
+      GTK_CURSOR_SIZE = cursor_size;
+    };
+  };
 
   home-manager.users.${USER} = {
-    dconf.enable = true;
+    dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/desktop/interface" = {
+          cursor-size = cursor_size;
+        };
+      };
+    };
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
@@ -300,7 +313,7 @@ in
             gtk.enable = true;
             x11.enable = true;
             name = name;
-            size = 96;
+            size = cursor_size;
             package = pkgs.runCommand "moveUp" { } ''
               mkdir -p $out/share/icons
               ln -s ${
