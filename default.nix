@@ -16,7 +16,7 @@ let
     device = "desc:Samsung Electric Company Odyssey G85SB H1AK500000";
     resolution = "3440x1440@120";
     position = "auto";
-    scale = "1";
+    scale = "1.67";
     vrr_mode = "vrr,1";
     config = "${external.device},${external.resolution},${external.position},${external.scale},${external.vrr_mode}";
   };
