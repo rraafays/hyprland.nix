@@ -32,6 +32,9 @@ in
     xwayland.enable = true;
   };
 
+  environment.variables.XCURSOR_SIZE = "96";
+  environment.variables.GTK_CURSOR_SIZE = "96";
+
   home-manager.users.${USER} = {
     dconf.enable = true;
     wayland.windowManager.hyprland = {
@@ -172,7 +175,6 @@ in
         };
 
         env = [
-          "XCURSOR_SIZE,24"
           "GDK_SCALE,1"
           "WLR_NO_HARDWARE_CURSORS,1"
           "QT_QPA_PLATFORM,wayland;xcb"
@@ -291,17 +293,40 @@ in
       };
     };
 
-    home.packages = with pkgs; [
-      nur.repos.wolfangaukang.mouseless
-      kitty
-      gamescope
-      grim
-      slurp
-      tofi
-      playerctl
-      clipse
-      wl-clipboard
-    ];
+    home = {
+      pointerCursor =
+        let
+          getFrom = url: hash: name: {
+            gtk.enable = true;
+            x11.enable = true;
+            name = name;
+            size = 96;
+            package = pkgs.runCommand "moveUp" { } ''
+              mkdir -p $out/share/icons
+              ln -s ${
+                pkgs.fetchzip {
+                  url = url;
+                  hash = hash;
+                }
+              } $out/share/icons/${name}
+            '';
+          };
+        in
+        getFrom "https://github.com/ful1e5/fuchsia-cursor/releases/download/v2.0.0/Fuchsia-Pop.tar.gz"
+          "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
+          "Fuchsia-Pop";
+      packages = with pkgs; [
+        nur.repos.wolfangaukang.mouseless
+        kitty
+        gamescope
+        grim
+        slurp
+        tofi
+        playerctl
+        clipse
+        wl-clipboard
+      ];
+    };
   };
 
   services.greetd = {
