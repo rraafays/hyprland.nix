@@ -28,13 +28,25 @@ let
 in
 {
   imports = [
+    ./dependencies.nix
+    ./autostart.nix
     ./hyprlock.nix
     ./cursor.nix
+    ./mouseless.nix
   ];
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 
   home-manager.users.${USER} = {
@@ -218,57 +230,5 @@ in
         };
       };
     };
-
-    systemd.user.services.mouseless = {
-      Unit = {
-        Description = "mouseless";
-      };
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
-      Service = {
-        ExecStart = "${pkgs.writeShellScript "mouseless" ''
-          #!/run/current-system/sw/bin/bash
-          ${pkgs.nur.repos.wolfangaukang.mouseless}/bin/mouseless --config ~/.config/mouseless/config.yaml
-        ''}";
-      };
-    };
-
-    home = {
-      packages = with pkgs; [
-        nur.repos.wolfangaukang.mouseless
-        kitty
-        gamescope
-        grim
-        slurp
-        tofi
-        playerctl
-        clipse
-        wl-clipboard
-      ];
-    };
-  };
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${USER}";
-      };
-      default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
-        user = "${USER}";
-      };
-    };
-  };
-
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal-gtk
-    ];
   };
 }
