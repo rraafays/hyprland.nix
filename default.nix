@@ -211,9 +211,13 @@ in
         ];
 
         windowrulev2 = [
-          "suppressevent maximize,class:^(?i).*steam.*$"
-          "suppressevent fullscreen,class:^(?i).*steam.*$"
-          "fullscreen,class:^(?i).*steam.*$"
+          "suppressevent maximize,class:steam"
+          "suppressevent fullscreen,class:steam"
+          "float,class:steam"
+          "center,class:steam"
+          "size 100% 100%,class:steam"
+          "rounding 0,class:steam"
+          "noborder,class:steam"
         ];
 
         xwayland = {
