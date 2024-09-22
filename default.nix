@@ -218,6 +218,14 @@ in
           "size 100% 100%,class:steam"
           "rounding 0,class:steam"
           "noborder,class:steam"
+
+          "suppressevent maximize,class:^steam_app_\\d+$"
+          "suppressevent fullscreen,class:^steam_app_\\d+$"
+          "float,class:^steam_app_\\d+$"
+          "center,class:^steam_app_\\d+$"
+          "size 100% 100%,class:^steam_app_\\d+$"
+          "rounding 0,class:^steam_app_\\d+$"
+          "noborder,class:^steam_app_\\d+$"
         ];
 
         xwayland = {
