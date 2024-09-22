@@ -194,8 +194,6 @@ in
           "XDG_CURRENT_DESKTOP,Hyprland"
           "XDG_SESSION_TYPE,wayland"
           "XDG_SESSION_DESKTOP,Hyprland"
-          "BROWSER,firefox"
-          "MOZ_ENABLE_WAYLAND,1"
 
           "GDL_BACKEND,wayland"
           "SDL_VIDEODRIVER,wayland"
