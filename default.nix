@@ -194,18 +194,8 @@ in
           "XDG_CURRENT_DESKTOP,Hyprland"
           "XDG_SESSION_TYPE,wayland"
           "XDG_SESSION_DESKTOP,Hyprland"
-
           "GDL_BACKEND,wayland"
           "SDL_VIDEODRIVER,wayland"
-          "ENABLE_VKBASALT,0"
-          "MESA_NO_ERROR,1"
-          "PROTON_USE_WINE3D,1"
-          "XWAYLAND_WM,1"
-          "PROTON_NO_ESYNC,1"
-          "PROTON_NO_FSYNC,1"
-          "WINEDLLOVERRIDES,dinput8=n,b"
-          "__GL_THREADED_OPTIMIZATIONS,1"
-          "MESA_GLTHREAD,TRUE"
         ];
 
         windowrulev2 = [
