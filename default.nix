@@ -75,7 +75,7 @@ in
 
           "CTRL ALT, DELETE, exec, shutdown now"
           "CTRL ALT, RETURN, exec, reboot"
-          "CTRL, l, exec, hyprlock"
+          ",XF86PowerOff, exec, hyprlock"
 
           "CTRL, q, killactive"
           "CTRL, RETURN, exec, kitty"
