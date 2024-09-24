@@ -124,7 +124,6 @@ in
         ];
 
         bindl = [
-          ", switch:Lid Switch, exec, hyprlock"
           ", switch:on:Lid Switch, exec, hyprctl keyword monitor '${internal.device},disable'"
           ", switch:on:Lid Switch, exec, sudo ${pkgs.dock}/bin/dock"
           ", switch:off:Lid Switch, exec, hyprctl keyword monitor '${internal.config}'"
