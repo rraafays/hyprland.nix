@@ -96,8 +96,6 @@ in
           "CTRL ALT, down,  resizeactive, 0 10"
           "CTRL ALT, left,  resizeactive, -10 0"
 
-          "CTRL, p, exec, playerctl play-pause"
-
           "CTRL, 1, focusworkspaceoncurrentmonitor, 1"
           "CTRL, 2, focusworkspaceoncurrentmonitor, 2"
           "CTRL, 3, focusworkspaceoncurrentmonitor, 3"
