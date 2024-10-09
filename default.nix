@@ -209,6 +209,9 @@ in
           "fullscreen,class:^steam_app_\\d+$"
           "rounding 0,class:^steam_app_\\d+$"
           "noborder,class:^steam_app_\\d+$"
+
+          "suppressevent maximize,class:^(libreoffice.*)$"
+          "suppressevent fullscreen,class:^(libreoffice.*)$"
         ];
 
         xwayland = {
