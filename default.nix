@@ -79,7 +79,7 @@ in
 
           "CTRL, q, killactive"
           "CTRL, RETURN, exec, kitty"
-          "CTRL, SPACE, exec, tofi-drun --drun-launch=true"
+          "CTRL, SPACE, exec, tofi-run"
 
           "CTRL, up,    movefocus, u"
           "CTRL, right, movefocus, r"
