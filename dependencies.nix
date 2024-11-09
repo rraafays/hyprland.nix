@@ -6,7 +6,6 @@ in
 {
   home-manager.users.${USER}.home = {
     packages = with pkgs; [
-      kitty
       grim
       slurp
       tofi
